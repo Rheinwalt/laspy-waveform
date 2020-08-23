@@ -48,4 +48,6 @@ pl.show()
 ```
 ![Three waveforms in Matplotlib](./img/waveforms-matplotlib.png "Three waveforms in Matplotlib")
 
+## Notes
 
+See [PulseWaves](https://github.com/Rheinwalt/pulsewaves) for Python code reading PulseWaves PLS files.
