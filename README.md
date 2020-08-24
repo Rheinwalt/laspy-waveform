@@ -18,10 +18,10 @@ fn_las = pfix + '.las'
 fn_wdp = pfix + '.wdp'
 
 # read entire files
-idx, pts = wf.read(fn_las, fn_wdp)
+idx, pts = wf.Read(fn_las, fn_wdp)
 
 # export to RGB colored LAS file
-wf.exportlas('fwf-' + fn_las, pts[:,3], pts)
+wf.ExportLAS('fwf-' + fn_las, pts[:,3], pts)
 ```
 
 ![Waveform LAS file in displaz](./img/waveforms-displaz.png "Waveform LAS file in displaz")
