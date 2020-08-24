@@ -10,9 +10,6 @@ Laspy based lidar waveform reader.
 ## Usage
 
 ```python
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as pl
-
 import WaveForm as wf
 
 # example files
@@ -30,6 +27,9 @@ wf.exportlas('fwf-' + fn_las, pts[:,3], pts)
 ![Waveform LAS file in displaz](./img/waveforms-displaz.png "Waveform LAS file in displaz")
 
 ```python
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as pl
+
 # make a 3d plot with waveforms 5, 6 and 7
 pts = pts[idx[5]:idx[8], :]
 x, y, z, a = pts[:,0], pts[:,1], pts[:,2], pts[:,3]
