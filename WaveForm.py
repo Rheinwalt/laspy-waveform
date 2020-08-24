@@ -55,6 +55,10 @@ def Read(fn_las, fn_wdp, mask = None):
         Start indices for the individual waveforms.
     pts : float ndarry
         Coordinates and amplitudes for all waveforms.
+
+    Notes
+    -----
+    We are assuming non-refracted, standard straight-line pulses.
     '''
     fp = lp.file.File(fn_las)
 
@@ -107,12 +111,11 @@ def Read(fn_las, fn_wdp, mask = None):
             a = np.frombuffer(b, dtype = np.uint8, count = l+l)
             sampling, gain, offset = wpds[wf_wpd[j], 3], wpds[wf_wpd[j], 4], wpds[wf_wpd[j], 5]
             pts[i:i+l, 3] = (a.reshape(l, 2) * np.array([1, 255])).sum(axis = 1) * gain + offset
-            pts[i:i+l,:3] = wf_xyz[j,:] + np.outer(sampling * np.arange(l) - wf_loc[j], wf_vec[j,:])
+            pts[i:i+l,:3] = wf_xyz[j,:] + np.outer(wf_loc[j] - np.arange(l) * sampling, wf_vec[j,:])
             i += l
 
     idx = np.append([0,], np.cumsum(wf_len))
     return (idx, pts)
-
 
 if __name__ == '__main__':
     from mpl_toolkits.mplot3d import Axes3D
